@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -20,7 +21,8 @@ public class GoWeatherClient {
 
     public Flux<WeatherCityMap> get(List<String> cityNameList) {
         return Flux.fromIterable(cityNameList)
-                .flatMap(this::getMono);
+                .flatMap(this::getMono)
+                .sort(Comparator.comparing(WeatherCityMap::getCity));
     }
 
     private Mono<WeatherCityMap> getMono(String cityName) {
