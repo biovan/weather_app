@@ -1,7 +1,7 @@
 package com.weather.client;
 
 import com.weather.dto.response.goweather.GoWeatherClientResponse;
-import com.weather.dto.response.goweather.WeatherCityMap;
+import com.weather.dto.response.goweather.CityForecast;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,19 @@ public class GoWeatherClient {
     @Value("${goweather.url}")
     private String url;
 
-    public Flux<WeatherCityMap> get(List<String> cityNameList) {
+    public Flux<CityForecast> get(List<String> cityNameList) {
         return Flux.fromIterable(cityNameList)
                 .flatMap(this::getMono)
-                .sort(Comparator.comparing(WeatherCityMap::getCity));
+                .sort(Comparator.comparing(CityForecast::getCity));
     }
 
-    private Mono<WeatherCityMap> getMono(String cityName) {
+    private Mono<CityForecast> getMono(String cityName) {
         return getWebClient()
                 .get()
                 .uri("{city_name}", cityName)
                 .retrieve()
                 .bodyToMono(GoWeatherClientResponse.class)
-                .map(goWeatherClientResponse -> new WeatherCityMap(cityName, goWeatherClientResponse));
+                .map(goWeatherClientResponse -> new CityForecast(cityName, goWeatherClientResponse));
     }
 
     private WebClient getWebClient() {

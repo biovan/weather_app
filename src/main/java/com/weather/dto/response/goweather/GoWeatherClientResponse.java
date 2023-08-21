@@ -1,10 +1,12 @@
 package com.weather.dto.response.goweather;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Builder
 public class GoWeatherClientResponse {
 
     private String temperature;

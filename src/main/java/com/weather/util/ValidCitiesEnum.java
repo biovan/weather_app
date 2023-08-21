@@ -10,7 +10,7 @@ public enum ValidCitiesEnum {
 
     ARAD("Arad"),
     TIMISOARA("Timisoara"),
-    CLUJ_NAPOCA("CLuj-Napoca"),
+    CLUJ_NAPOCA("Cluj-Napoca"),
     BUCURESTI("Bucuresti"),
     CONSTANTA("Constanta"),
     BAIA_MARE("Baia-Mare");
