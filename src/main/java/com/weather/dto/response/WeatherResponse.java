@@ -1,6 +1,5 @@
 package com.weather.dto.response;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +12,6 @@ public class WeatherResponse {
     private String wind;
 
     public String toCsvLine() {
-        return String.format("%s, %s, %s \n", name, temperature, wind);
+        return String.format("%s, %s, %s %n", name, temperature, wind);
     }
 }

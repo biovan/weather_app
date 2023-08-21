@@ -16,7 +16,7 @@ public class CsvWriterService {
     @Value("${csv.file.path}")
     private String csvFile;
 
-    private final static String CSV_HEADERS = "City, Temperature, Wind \n";
+    private static final String CSV_HEADERS = "City, Temperature, Wind \n";
 
     public Optional<FileWriter> initializeCsvFile() {
         try {
@@ -37,8 +37,7 @@ public class CsvWriterService {
             if (optFile.isEmpty()) {
                 throw new BusinessException("No file provided");
             }
-            var file = optFile.get();
-            file = new FileWriter(csvFile, true);
+            var file = new FileWriter(csvFile, true);
             log.info(String.format("Writing CSV line %s", cvsLine));
             file.write(cvsLine);
             file.close();

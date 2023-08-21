@@ -34,7 +34,7 @@ public class WeatherResponseMapper {
                 days++;
             }
         }
-        return decimalFormat.format(mean / days);
+        return decimalFormat.format(mean / (days > 0 ? days : 1));
     }
 
     private String getWindMean(List<ForecastResponse> forecastList) {
